@@ -276,8 +276,8 @@ All group members are welcome to contribute ideas, review the project files, and
 
 ## Project Status
 
-**In Development**
+**Completed**
 
-The algorithm, analysis, documentation, and website are being developed collaboratively. Preliminary findings may be updated as the project progresses.
+**website Link:** (https://github.com/sribobv15/Student_Rsik_Assesment_Group-6)
 
 
