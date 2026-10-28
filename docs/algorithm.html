@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><meta content="Group 6 student academic risk assessment project" name="description"/><title>Algorithm Design &amp; Evaluation | Group 6</title><link href="styles.css" rel="stylesheet"/></head>
+<body><a class="skip-link" href="#main">Skip to content</a><header class="site-header"><div class="shell topbar"><a class="brand" href="index.html"><span class="brand-icon">G6</span><span>Student Risk Assessment<small>Datalogical Thinking · Group 6</small></span></a><nav aria-label="Main navigation"><a href="index.html">Home</a><a href="dataset.html">Dataset</a><a aria-current="page" class="active" href="algorithm.html">Algorithm</a><a href="people.html">Team</a></nav></div></header>
+<main class="shell" id="main"><section class="hero"><p class="eyebrow">RESEARCH PROJECT  /  GROUP 06</p><h1>Algorithm Design &amp; Evaluation</h1><p class="lead">A seven-stage, explainable scoring workflow with explicit rules and a transparent performance check.</p></section>
+<section class="card"><h2>Design motivation</h2><p> We chose a rule-based algorithm because it is simple, transparent, and easy to understand. Each student's risk level is determined using predefined scoring rules based on previous academic failures, weekly study time, and school absences. The initial weights and thresholds were selected during our algorithm design process and have not been statistically optimized. We evaluate the algorithm by comparing its predictions with students' actual final grades to assess how effectively it identifies students at risk of academic failure.</p></section>
+<section class="card"><h2>Seven-stage workflow</h2><ol class="steps"><li><strong>Load data:</strong> Read <code>Data.csv</code>.</li><li><strong>Clean data:</strong> Check missing, invalid, and possible duplicate records.</li><li><strong>Initialize counters:</strong> Prepare risk and evaluation totals.</li><li><strong>Score risk:</strong> Add points based on the selected features.</li><li><strong>Classify risk:</strong> Assign Low, Medium, or High Risk.</li><li><strong>Evaluate:</strong> Compare predicted failure with <code>G3 &lt; 10</code>.</li><li><strong>Report:</strong> Print category counts, confusion-matrix values, and accuracy.</li></ol></section>
+<section class="grid two"><article class="card"><h2>Risk scoring rules</h2><div class="table-wrap"><table><thead><tr><th>Condition</th><th>Points</th></tr></thead><tbody><tr><td><code>failures &gt;= 2</code></td><td>+2</td></tr><tr><td><code>failures == 1</code></td><td>+1</td></tr><tr><td><code>studytime == 1</code></td><td>+1</td></tr><tr><td><code>absences &gt; 10</code></td><td>+1</td></tr></tbody></table></div><p class="note">The two failure rules are mutually exclusive.</p></article><article class="card"><h2>Risk categories</h2><div class="risk low"><strong>Low Risk</strong><span>Score 0</span></div><div class="risk medium"><strong>Medium Risk</strong><span>Score 1–2</span></div><div class="risk high"><strong>High Risk</strong><span>Score 3–4</span></div><p class="note">For binary evaluation only, High Risk predicts failure; Low and Medium predict non-failure.</p></article></section>
+<section class="card"><h2>Illustrative pseudocode</h2><pre><code>FOR EACH student IN cleaned_data:
+    score = 0
+    IF failures &gt;= 2: score += 2
+    ELSE IF failures == 1: score += 1
+    IF studytime == 1: score += 1
+    IF absences &gt; 10: score += 1
+
+    IF score &gt;= 3: risk = "High Risk"
+    ELSE IF score &gt;= 1: risk = "Medium Risk"
+    ELSE: risk = "Low Risk"
+
+    predicted_failure = (risk == "High Risk")
+    actual_failure = (G3 &lt; 10)
+    UPDATE TP, FP, FN, OR TN</code></pre><p class="note">The full pseudocode also includes data cleaning, counters, record output, and summary calculations. <a href="https://github.com/sribobv15/Learning_Analytics/blob/main/Student_Risk_Algorithm.md" target="_blank" rel="noopener noreferrer">View the complete pseudocode on GitHub ↗</a>.</p></section>
+<section class="preliminary-results">
+    <h2>Preliminary Results</h2>
+
+    <p>
+        Explore our Python implementation and preliminary results,
+        including risk classification and algorithm evaluation,
+        in the Jupyter Notebook.
+    </p>
+
+    <a href="https://github.com/sribobv15/Learning_Analytics/blob/main/python/student_assesment.ipynb"
+       class="github-button"
+       target="_blank"
+       rel="noopener noreferrer">
+        View Python Code and Preliminary Results ↗
+    </a>
+</section>
+</a></h2><div class="grid three"><div class="mini"><strong>367</strong><span>Low Risk · 56.5%</span></div><div class="mini"><strong>260</strong><span>Medium Risk · 40.1%</span></div><div class="mini"><strong>22</strong><span>High Risk · 3.4%</span></div></div><h3>
+</a>Binary evaluation</h3><div class="table-wrap"><table><thead><tr><th>Metric</th><th>Count / result</th></tr></thead><tbody><tr><td>True positives (TP)</td><td>12</td></tr><tr><td>False positives (FP)</td><td>10</td></tr><tr><td>False negatives (FN)</td><td>88</td></tr><tr><td>True negatives (TN)</td><td>539</td></tr><tr><td>Accuracy</td><td>84.90%</td></tr><tr><td>Failure recall</td><td>12.00%</td></tr></tbody></table></div><p><strong>Interpretation:</strong> The algorithm missed 88 of the 100 students whose final grade was below 10. Despite relatively high overall accuracy, it is not yet reliable for identifying students who fail.</p></section><section class="card" id="summary-of-results">
+<h2>Summary of Results</h2>
+<p>The following findings summarize our preliminary analysis of 649 student records and the evaluation of our rule-based risk classification algorithm.</p>
+<h3>Data processing and risk classification</h3>
+<ul>
+<li><strong>Data quality:</strong> All 649 student records were processed successfully, with no missing values, invalid values, or duplicate records detected by our cleaning checks.</li>
+<li><strong>Risk classification:</strong> 367 students (56.5%) were classified as Low Risk, 260 (40.1%) as Medium Risk, and 22 (3.4%) as High Risk.</li>
+</ul>
+<h3>Prediction evaluation</h3>
+<ul>
+<li><strong>Prediction accuracy:</strong> The algorithm achieved 84.90% overall binary pass/fail prediction accuracy, using the recorded final grade (<code>G3</code>) for evaluation.</li>
+<li><strong>Correctly identified failures:</strong> Of the 100 students who actually failed (<code>G3 &lt; 10</code>), 12 were correctly classified as High Risk.</li>
+<li><strong>Missed failures:</strong> The algorithm missed 88 of the 100 students who actually failed, indicating that the current risk-scoring rules need improvement.</li>
+<li><strong>False alarms:</strong> Ten students were classified as High Risk but actually passed, showing that the selected risk factors do not always correspond to academic failure.</li>
+</ul>
+<div class="callout"><strong>Main conclusion:</strong> Although the algorithm achieved 84.90% overall accuracy, it identified only 12% of students who actually failed. This shows that accuracy alone is not sufficient to evaluate how effectively the algorithm identifies students who may need academic support.</div>
+</section>
+<section class="callout"><strong>Important interpretation:</strong> Accuracy is 84.90%, but recall for actual failures is only 12%. The algorithm should not be used to make real student decisions without substantial validation.</section><section class="card accent"><h2>What we would improve</h2><p> We would explore different risk-scoring thresholds and feature combinations to improve the identification of students at risk of academic failure. Since our algorithm correctly identified only 12% of students who actually failed, we would focus particularly on reducing missed failures. We would also evaluate precision and recall alongside overall accuracy, consider fairness across different student groups, and investigate whether the required data would be available early enough to provide meaningful academic support.</p></section></main>
+<footer><div class="shell footer-inner"><span>Datalogical Thinking · Group 6 · Student Risk Assessment · 2026</span><span>Educational demonstration · Preliminary findings</span></div></footer></body></html>

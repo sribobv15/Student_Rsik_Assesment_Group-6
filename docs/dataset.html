@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><meta content="Group 6 student academic risk assessment project" name="description"/><title>The Dataset | Group 6</title><link href="styles.css" rel="stylesheet"/></head>
+<body><a class="skip-link" href="#main">Skip to content</a><header class="site-header"><div class="shell topbar"><a class="brand" href="index.html"><span class="brand-icon">G6</span><span>Student Risk Assessment<small>Datalogical Thinking · Group 6</small></span></a><nav aria-label="Main navigation"><a href="index.html">Home</a><a aria-current="page" class="active" href="dataset.html">Dataset</a><a href="algorithm.html">Algorithm</a><a href="people.html">Team</a></nav></div></header>
+<main class="shell" id="main"><section class="hero"><p class="eyebrow">RESEARCH PROJECT  /  GROUP 06</p><h1>The Dataset</h1><p class="lead">What the student performance data describes, where it came from, and why these features were selected.</p></section>
+<section class="card"><h2>Source and scope</h2><p>Our analysis uses a publicly shared student performance dataset with <strong>649 records and 33 attributes</strong>. It includes academic outcomes, attendance, study habits, and other background variables.</p><p><strong>Dataset:</strong> <a class="text-link" href="https://www.kaggle.com/datasets/adeelumar/students-performance-prediction/data" rel="noopener noreferrer" target="_blank">Students Performance Prediction on Kaggle ↗</a></p><p class="note">The Kaggle page hosts the data used in this project. Consult the source page for its attribution and usage conditions.</p></section>
+<section aria-labelledby="brainstorm-title" class="card research-process">
+<p class="section-kicker">OUR RESEARCH PROCESS</p>
+<h2 id="brainstorm-title">From Team Brainstorming to Feature Selection</h2>
+<p>Our group began by discussing several academic, family, and demographic variables. We considered how student circumstances may interact, why individual characteristics do not tell the full story, and how to avoid overly simplistic or potentially unfair interpretations.</p>
+<p>We then explored descriptive statistics and correlations with final grade (<code>G3</code>). Balancing interpretability, project scope, and the available data, we chose <strong>previous failures</strong>, <strong>weekly study time</strong>, and <strong>school absences</strong> for our initial rule-based algorithm.</p>
+<figure class="process-figure">
+    <img
+        src="brainstorming_feature_selection.webp"
+        alt="Illustration of group brainstorming and feature selection"
+        width="1536"
+        height="1024"
+        loading="lazy"
+    >
+
+    <figcaption>
+        <strong>Figure 1.</strong>
+        Group brainstorming and exploratory analysis leading to the three selected features.
+    </figcaption>
+</figure>
+<div class="process-insight"><strong>Why these three?</strong> Previous failures showed the strongest correlation with final grade (approximately −0.39), followed by study time (+0.25). Absences had a much weaker linear correlation (−0.09), but were retained as an interpretable attendance-related factor to test. Correlation alone does not establish causation or validate the scoring weights.</div>
+</section>
+<section class="card"><p class="section-kicker">FEATURE SELECTION</p><h2>Three inputs. One evaluation outcome.</h2><div class="feature-grid"><div class="feature"><span class="tag">INPUT 01</span><b>Previous failures</b><span>Past academic difficulty</span></div><div class="feature"><span class="tag">INPUT 02</span><b>Study time</b><span>Weekly study-time category</span></div><div class="feature"><span class="tag">INPUT 03</span><b>Absences</b><span>Attendance pattern</span></div></div></section><section class="card"><h2>Variables used in the project</h2><div class="table-wrap"><table><thead><tr><th>Variable</th><th>Meaning</th><th>Role</th></tr></thead><tbody><tr><td><code>failures</code></td><td>Number of previous class failures (0–3)</td><td>Risk input</td></tr><tr><td><code>studytime</code></td><td>Weekly study-time category (1–4)</td><td>Risk input</td></tr><tr><td><code>absences</code></td><td>Number of school absences</td><td>Risk input</td></tr><tr><td><code>G3</code></td><td>Final grade (0–20)</td><td>Evaluation only</td></tr></tbody></table></div></section>
+<section class="grid two"><article class="card"><h2>Why these variables?</h2><p><strong>Previous failures:</strong> a direct indicator of past academic difficulty.</p><p><strong>Study time:</strong> a simple representation of study habits.</p><p><strong>Absences:</strong> a potential signal of reduced classroom participation.</p><p>We selected only three inputs to keep the rules understandable and feasible to implement and explain.</p></article><article class="card"><h2>Why not use G3 as an input?</h2><p><code>G3</code> is the outcome we want to evaluate against. Including it in the risk score would leak the answer into the prediction. Instead, we use <code>G3 &lt; 10</code> to mark an actual failure <em>after</em> the risk label has been assigned.</p></article></section>
+<section class="card"><h2>Data preparation and limitations</h2><p>Before scoring, the algorithm checks required values, validates expected ranges, and flags completely identical rows as possible duplicates. An identical row is not proof that two records represent the same student, so duplicate handling should be interpreted cautiously.</p><p>Our preliminary run reported 649 cleaned records, with no missing, invalid, or identical-row records removed. The dataset is observational, so associations do not prove causation.</p></section></main>
+<footer><div class="shell footer-inner"><span>Datalogical Thinking · Group 6 · Student Risk Assessment · 2026</span><span>Educational demonstration · Preliminary findings</span></div></footer></body></html>
