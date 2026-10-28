@@ -278,6 +278,6 @@ All group members are welcome to contribute ideas, review the project files, and
 
 **Completed**
 
-**website Link:** (https://github.com/sribobv15/Student_Rsik_Assesment_Group-6)
+**website Link:** (https://sribobv15.github.io/Student_Rsik_Assesment_Group-6/)
 
 
