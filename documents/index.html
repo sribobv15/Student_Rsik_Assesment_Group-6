@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Risk Assessment Algorithm</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <img src="school-2.jpg" alt="Website banner cover photo" class="cover-photo">
+
+    <!-- Main Heading (Title of the content) -->
+    <h1>Student Risk Assessment Algorithm</h1>
+
+    <!-- Subheading -->
+    <h2>Identifying Students at Risk of Academic Failure Using Academic Data Variables</h2>
+
+    <!-- Body Text Paragraph -->
+    <p>For this group project, we have prepared a prototype of an algorithm which aims to predict student performance based on multiple metrics found in <a href="https://www.kaggle.com/datasets/adeelumar/students-performance-prediction/data" target="_blank">this</a> public dataset found on Kaggle.com.</p>
+    <p>This dataset contains 649 student records and 33 variables.</p>
+
+    <!-- Bullet List (Unordered List) -->
+    <ul>
+        <li>Study time</li>
+        <li>Absences</li>
+        <li>Final Grade</li>
+    </ul>
+    <p>Preliminary correlation analysis points to the following three potential predictors:</p>
+    <!-- Bullet List (Unordered List) -->
+    <ul>
+        <li>Previous academic failures (`failures`): −0.393</li>
+        <li>Weekly study time (`studytime`):+0.250</li>
+        <li>School absences (`absences`):−0.091</li>
+    </ul>
+    <p> Below is a general overview of the results:</p>
+    <img src="results.jpg" alt="results" class="content-image">
+    <p>Summary of Results:</p>
+<p>Data quality: All 649 student records were processed successfully, with no missing values, invalid values, or duplicate <p>records detected by our cleaning checks.</p>
+
+Risk classification: The algorithm classified 367 students (56.5%) as Low Risk, 260 (40.1%) as Medium Risk, and 22 (3.4%) as <p>High Risk.</p>
+
+Prediction accuracy: The algorithm achieved an overall binary pass/fail prediction accuracy of 84.90% using the final grade (<p>G3) for evaluation.</p>
+
+Correctly identified failures: Of the 100 students who actually failed (G3 < 10), the algorithm correctly identified 12 as <p>High Risk.</p>
+
+Missed failures: The algorithm failed to identify 88 of the 100 students who actually failed, indicating that the current <p>risk-scoring rules need improvement.</p>
+
+False alarms: Ten students were classified as High Risk but actually passed, demonstrating that risk factors do not always <p>lead to academic failure.</p>
+
+Main conclusion: Although the algorithm achieved relatively high overall accuracy, it identified only 12% of students who <p>actually failed. This suggests that accuracy alone is not sufficient to evaluate its effectiveness.</p></p>
+
+    <p>To see the source python code and the correcponding pseudo code for the algorithm used, please refer to the <a href="code.html">Code Page</a>.</p>
+</body>
+</html>
